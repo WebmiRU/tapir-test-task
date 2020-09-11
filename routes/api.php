@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\AdController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['prefix' => 'ad', 'as' => 'ad.'], function() {
+    Route::post('/', [AdController::class, 'post']);
+    Route::get('/', [AdController::class, 'index']);
+    Route::get('all', [AdController::class, 'all']);
+    Route::get('{id}', [AdController::class, 'get']);
 });

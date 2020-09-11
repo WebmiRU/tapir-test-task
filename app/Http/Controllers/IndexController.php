@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Ad;
 
 class IndexController extends Controller
 {
     public function index() {
+        $model = Ad::paginate(10);
 
+        return view('index', ['model' => $model]);
     }
 }
